@@ -1,0 +1,42 @@
+import React from 'react'
+import { useState } from 'react'
+
+function Guessno() {
+    const [attempt,setAttempt]=useState(10)
+    const [value,setValue]=useState()
+    const [num,setNum]=useState()
+
+
+    const randomNumberInRange = (min, max) => {
+        return Math.floor(Math.random()
+            * (max - min + 1)) + min;
+    };
+
+   const addNumber=(e)=>{
+    e.preventDefault();
+    setNum(randomNumberInRange(1, 20));
+    console.log(num,value);
+     if(attempt>0){
+        setAttempt(attempt-1);
+    if(num===value){
+        alert("You won the match");
+    }else{
+        alert("You loss the match");
+    }
+
+}
+    }
+  return (
+    
+    <>
+    <form onSubmit={addNumber}>
+        <input type="text" name="" id="" value={value} onChange={(e)=>{setValue(e.target.value)}} />
+        <br />
+        <input type="submit" value="Submit" />
+        <p>No of attempt you have to win: {attempt}</p>
+    </form>
+    </>
+  )
+}
+
+export default Guessno
